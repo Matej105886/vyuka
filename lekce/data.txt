@@ -1,1 +1,3 @@
-Pepa;50000;konstrukterPavel;60000;reditel
+Jan;30000;uklizec
+Pepa;60000;reditel
+Pavel;50000;konstrukter

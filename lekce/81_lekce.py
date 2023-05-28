@@ -49,18 +49,36 @@ class Databaze:
     def uloz(self):
         with open("data.txt", "w") as data:
             for zamestnanec in self.list_zamestnancu:
-                data.write(zamestnanec.jmeno + ";" + str(zamestnanec.plat) + ";" + zamestnanec.specializace)
+                data.write(zamestnanec.jmeno + ";" + str(zamestnanec.plat) + ";" + zamestnanec.specializace + "\n")
+
+    def nahraj(self):
+        with open("data.txt", "r") as data:
+            for line in data:
+                jmeno, plat, specializace = line.strip().split(";")
+                zamestnanec = Zamestnanec(jmeno, int(plat), specializace)
+                self.list_zamestnancu.append(zamestnanec)
+
+    def vypocitej_prumnerny_plat(self):
+        plat_dohromady = 0
+        for zamestnanec in self.list_zamestnancu:
+            plat_dohromady += zamestnanec.plat
+        print("prumnerny plat zamestnancu je " + str(plat_dohromady // len(self.list_zamestnancu)))
+
 
 databaze = Databaze()
 while True:
-    volba = input("pridani zamestnance = 1; vypis vsech zamestnancu = 2; ulozeni = 3; ukonceni = 4: ")
+    volba = input("pridani zamestnance = 1; vypis vsech zamestnancu = 2; ulozeni = 3; nahrani = 5; prumnerny plat = 6; ukonceni = x: ")
     if volba == "1":
         databaze.pridej_zamestnance()
     elif volba == "2":
         databaze.vypis_vsech_zamestnancu()
     elif volba == "3":
         databaze.uloz()
-    elif volba == "4":
+    elif volba == "x":
         break
+    elif volba == "5":
+        databaze.nahraj()
+    elif volba == "6":
+        databaze.vypocitej_prumnerny_plat()
     else:
         print("spatna volba")
