@@ -1,3 +1,4 @@
 Jan;30000;uklizec
-Pepa;60000;reditel
+Pepa;260000;reditel
 Pavel;50000;konstrukter
+Jirka;40000;delnik
